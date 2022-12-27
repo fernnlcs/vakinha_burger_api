@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-dart"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://dart:password@localhost:3306/vakinha_burger"
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String
+  password String
+  orders   Order[]
+}
+
+model Product {
+  id           Int         @id @default(autoincrement())
+  name         String
+  description  String
+  price        Float
+  image        String?
+  orderedItems OrderItem[]
+}
+
+model Order {
+  id               Int         @id @default(autoincrement())
+  user_id          Int
+  transaction_id   Int?
+  client_cpf       String?
+  delivery_address String
+  status           String      @default("pending")
+  user             User        @relation(fields: [user_id], references: [id])
+  items            OrderItem[]
+}
+
+model OrderItem {
+  id         Int     @id @default(autoincrement())
+  quantity   String
+  order_id   Int
+  product_id Int
+  order      Order   @relation(fields: [order_id], references: [id])
+  product    Product @relation(fields: [product_id], references: [id])
+}

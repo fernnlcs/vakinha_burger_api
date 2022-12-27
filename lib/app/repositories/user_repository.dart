@@ -1,38 +1,71 @@
-import 'package:mysql1/mysql1.dart';
-import 'package:vakinha_burger_api/app/core/database/database.dart';
 import 'package:vakinha_burger_api/app/core/exceptions/email_already_registered.dart';
+import 'package:vakinha_burger_api/app/core/exceptions/user_not_found_exception.dart';
 import 'package:vakinha_burger_api/app/core/helper/cripty_helper.dart';
 import 'package:vakinha_burger_api/app/entities/user.dart';
+import 'package:vakinha_burger_api/src/generated/prisma_client.dart' as orm;
 
 class UserRepository {
-  Future<void> save(User user) async {
-    MySqlConnection? conn;
-    try {
-      conn = await Database().openConnection();
+  final orm.PrismaClient prisma = orm.PrismaClient();
 
-      final isUserRegistered = await conn.query(
-        'select * from usuario where email = ?',
-        [user.email],
+  Future<User> login(String email, String password) async {
+    try {
+      prisma.$connect();
+      final userFound = await prisma.user.findUnique(
+        where: orm.UserWhereUniqueInput(
+          email: email,
+        ),
       );
 
-      if (isUserRegistered.isEmpty) {
-        await conn.query(''' 
-        insert into usuario values(?, ?, ?, ?)
-        ''', [
-          null,
-          user.name,
-          user.email,
-          CriptyHelper.generateSha256Hash(user.password),
-        ]);
-      } else {
-        throw EmailAlreadyRegistered();
+      if (userFound == null ||
+          userFound.password != CriptyHelper.generateSha256Hash(password)) {
+        throw UserNotFoundException();
       }
-    } on MySqlException catch (e, s) {
-      print(e);
-      print(s);
+
+      return User(
+        id: userFound.id,
+        name: userFound.name,
+        email: userFound.email,
+        password: '',
+      );
+    } catch (e) {
+      print(e.toString());
       rethrow;
     } finally {
-      await conn?.close();
+      // await prisma.$disconnect();
+    }
+  }
+
+  Future<void> save(User user) async {
+    try {
+      final usersWithSameEmail = await prisma.user.findMany(
+        where: orm.UserWhereInput(
+          email: orm.PrismaUnion(
+            zero: orm.StringFilter(
+              equals: user.email,
+            ),
+          ),
+        ),
+      );
+
+      if (usersWithSameEmail.isNotEmpty) {
+        throw EmailAlreadyRegistered();
+      }
+
+      final orm.User prismaUser = await prisma.user.create(
+        data: orm.PrismaUnion(
+          zero: orm.UserCreateInput(
+            name: user.name,
+            email: user.email,
+            password: CriptyHelper.generateSha256Hash(user.password),
+          ),
+        ),
+      );
+      print(prismaUser.toJson());
+    } catch (e) {
+      print(e.toString());
+      rethrow;
+    } finally {
+      // await prisma.$disconnect();
     }
   }
 }

@@ -13,5 +13,10 @@ Router _$AuthControllerRouter(AuthController service) {
     r'/register',
     service.register,
   );
+  router.add(
+    'POST',
+    r'/login',
+    service.login,
+  );
   return router;
 }
