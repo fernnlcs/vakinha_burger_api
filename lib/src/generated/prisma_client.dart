@@ -653,7 +653,7 @@ class OrderItemWhereInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<IntFilter, int>> id;
 
-  final _i1.PrismaNullable<_i1.PrismaUnion<StringFilter, String>> quantity;
+  final _i1.PrismaNullable<_i1.PrismaUnion<IntFilter, int>> quantity;
 
   final _i1.PrismaNullable<_i1.PrismaUnion<IntFilter, int>> order_id;
 
@@ -796,7 +796,7 @@ class OrderItemScalarWhereWithAggregatesInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<IntWithAggregatesFilter, int>> id;
 
-  final _i1.PrismaNullable<_i1.PrismaUnion<StringWithAggregatesFilter, String>>
+  final _i1.PrismaNullable<_i1.PrismaUnion<IntWithAggregatesFilter, int>>
       quantity;
 
   final _i1.PrismaNullable<_i1.PrismaUnion<IntWithAggregatesFilter, int>>
@@ -1559,7 +1559,7 @@ class OrderItemCreateInput implements _i1.JsonSerializable {
     required this.product,
   });
 
-  final String quantity;
+  final int quantity;
 
   final OrderCreateNestedOneWithoutItemsInput order;
 
@@ -1585,7 +1585,7 @@ class OrderItemUncheckedCreateInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<int> id;
 
-  final String quantity;
+  final int quantity;
 
   final int order_id;
 
@@ -1609,8 +1609,8 @@ class OrderItemUpdateInput implements _i1.JsonSerializable {
     this.product,
   });
 
-  final _i1.PrismaNullable<
-      _i1.PrismaUnion<String, StringFieldUpdateOperationsInput>> quantity;
+  final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
+      quantity;
 
   final _i1.PrismaNullable<OrderUpdateOneRequiredWithoutItemsNestedInput> order;
 
@@ -1638,8 +1638,8 @@ class OrderItemUncheckedUpdateInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
       id;
 
-  final _i1.PrismaNullable<
-      _i1.PrismaUnion<String, StringFieldUpdateOperationsInput>> quantity;
+  final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
+      quantity;
 
   final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
       order_id;
@@ -1668,7 +1668,7 @@ class OrderItemCreateManyInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<int> id;
 
-  final String quantity;
+  final int quantity;
 
   final int order_id;
 
@@ -1688,8 +1688,8 @@ class OrderItemCreateManyInput implements _i1.JsonSerializable {
 class OrderItemUpdateManyMutationInput implements _i1.JsonSerializable {
   const OrderItemUpdateManyMutationInput({this.quantity});
 
-  final _i1.PrismaNullable<
-      _i1.PrismaUnion<String, StringFieldUpdateOperationsInput>> quantity;
+  final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
+      quantity;
 
   @override
   Map<String, dynamic> toJson() {
@@ -1710,8 +1710,8 @@ class OrderItemUncheckedUpdateManyInput implements _i1.JsonSerializable {
   final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
       id;
 
-  final _i1.PrismaNullable<
-      _i1.PrismaUnion<String, StringFieldUpdateOperationsInput>> quantity;
+  final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
+      quantity;
 
   final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
       order_id;
@@ -2846,11 +2846,14 @@ class OrderItemCountOrderByAggregateInput implements _i1.JsonSerializable {
 class OrderItemAvgOrderByAggregateInput implements _i1.JsonSerializable {
   const OrderItemAvgOrderByAggregateInput({
     this.id,
+    this.quantity,
     this.order_id,
     this.product_id,
   });
 
   final _i1.PrismaNullable<SortOrder> id;
+
+  final _i1.PrismaNullable<SortOrder> quantity;
 
   final _i1.PrismaNullable<SortOrder> order_id;
 
@@ -2860,6 +2863,7 @@ class OrderItemAvgOrderByAggregateInput implements _i1.JsonSerializable {
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'id': id,
+      'quantity': quantity,
       'order_id': order_id,
       'product_id': product_id,
     };
@@ -2923,11 +2927,14 @@ class OrderItemMinOrderByAggregateInput implements _i1.JsonSerializable {
 class OrderItemSumOrderByAggregateInput implements _i1.JsonSerializable {
   const OrderItemSumOrderByAggregateInput({
     this.id,
+    this.quantity,
     this.order_id,
     this.product_id,
   });
 
   final _i1.PrismaNullable<SortOrder> id;
+
+  final _i1.PrismaNullable<SortOrder> quantity;
 
   final _i1.PrismaNullable<SortOrder> order_id;
 
@@ -2937,6 +2944,7 @@ class OrderItemSumOrderByAggregateInput implements _i1.JsonSerializable {
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
       'id': id,
+      'quantity': quantity,
       'order_id': order_id,
       'product_id': product_id,
     };
@@ -4277,7 +4285,8 @@ class NestedIntNullableFilter implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<int> gte;
 
-  final _i1.PrismaNullable<_i1.PrismaUnion<int, NestedIntNullableFilter>> not;
+  final _i1.PrismaNullable<
+      _i1.PrismaUnion<int, NestedIntNullableFilter>> not;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4384,8 +4393,8 @@ class NestedFloatNullableFilter implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<double> gte;
 
-  final _i1.PrismaNullable<_i1.PrismaUnion<double, NestedFloatNullableFilter>>
-      not;
+  final _i1.PrismaNullable<
+      _i1.PrismaUnion<double, NestedFloatNullableFilter>> not;
 
   @override
   Map<String, dynamic> toJson() {
@@ -4598,11 +4607,11 @@ class OrderScalarWhereInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<IntFilter, int>> user_id;
 
-  final _i1.PrismaNullable<_i1.PrismaUnion<IntNullableFilter, int>>
-      transaction_id;
+  final _i1.PrismaNullable<
+      _i1.PrismaUnion<IntNullableFilter, int>> transaction_id;
 
-  final _i1.PrismaNullable<_i1.PrismaUnion<StringNullableFilter, String>>
-      client_cpf;
+  final _i1.PrismaNullable<
+      _i1.PrismaUnion<StringNullableFilter, String>> client_cpf;
 
   final _i1.PrismaNullable<_i1.PrismaUnion<StringFilter, String>>
       delivery_address;
@@ -4631,7 +4640,7 @@ class OrderItemCreateWithoutProductInput implements _i1.JsonSerializable {
     required this.order,
   });
 
-  final String quantity;
+  final int quantity;
 
   final OrderCreateNestedOneWithoutItemsInput order;
 
@@ -4654,7 +4663,7 @@ class OrderItemUncheckedCreateWithoutProductInput
 
   final _i1.PrismaNullable<int> id;
 
-  final String quantity;
+  final int quantity;
 
   final int order_id;
 
@@ -4795,7 +4804,7 @@ class OrderItemScalarWhereInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<_i1.PrismaUnion<IntFilter, int>> id;
 
-  final _i1.PrismaNullable<_i1.PrismaUnion<StringFilter, String>> quantity;
+  final _i1.PrismaNullable<_i1.PrismaUnion<IntFilter, int>> quantity;
 
   final _i1.PrismaNullable<_i1.PrismaUnion<IntFilter, int>> order_id;
 
@@ -4891,7 +4900,7 @@ class OrderItemCreateWithoutOrderInput implements _i1.JsonSerializable {
     required this.product,
   });
 
-  final String quantity;
+  final int quantity;
 
   final ProductCreateNestedOneWithoutOrderedItemsInput product;
 
@@ -4914,7 +4923,7 @@ class OrderItemUncheckedCreateWithoutOrderInput
 
   final _i1.PrismaNullable<int> id;
 
-  final String quantity;
+  final int quantity;
 
   final int product_id;
 
@@ -5634,7 +5643,7 @@ class OrderItemCreateManyProductInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<int> id;
 
-  final String quantity;
+  final int quantity;
 
   final int order_id;
 
@@ -5654,8 +5663,8 @@ class OrderItemUpdateWithoutProductInput implements _i1.JsonSerializable {
     this.order,
   });
 
-  final _i1.PrismaNullable<
-      _i1.PrismaUnion<String, StringFieldUpdateOperationsInput>> quantity;
+  final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
+      quantity;
 
   final _i1.PrismaNullable<OrderUpdateOneRequiredWithoutItemsNestedInput> order;
 
@@ -5679,8 +5688,8 @@ class OrderItemUncheckedUpdateWithoutProductInput
   final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
       id;
 
-  final _i1.PrismaNullable<
-      _i1.PrismaUnion<String, StringFieldUpdateOperationsInput>> quantity;
+  final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
+      quantity;
 
   final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
       order_id;
@@ -5706,8 +5715,8 @@ class OrderItemUncheckedUpdateManyWithoutOrderedItemsInput
   final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
       id;
 
-  final _i1.PrismaNullable<
-      _i1.PrismaUnion<String, StringFieldUpdateOperationsInput>> quantity;
+  final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
+      quantity;
 
   final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
       order_id;
@@ -5731,7 +5740,7 @@ class OrderItemCreateManyOrderInput implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<int> id;
 
-  final String quantity;
+  final int quantity;
 
   final int product_id;
 
@@ -5751,8 +5760,8 @@ class OrderItemUpdateWithoutOrderInput implements _i1.JsonSerializable {
     this.product,
   });
 
-  final _i1.PrismaNullable<
-      _i1.PrismaUnion<String, StringFieldUpdateOperationsInput>> quantity;
+  final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
+      quantity;
 
   final _i1.PrismaNullable<
       ProductUpdateOneRequiredWithoutOrderedItemsNestedInput> product;
@@ -5777,8 +5786,8 @@ class OrderItemUncheckedUpdateWithoutOrderInput
   final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
       id;
 
-  final _i1.PrismaNullable<
-      _i1.PrismaUnion<String, StringFieldUpdateOperationsInput>> quantity;
+  final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
+      quantity;
 
   final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
       product_id;
@@ -5804,8 +5813,8 @@ class OrderItemUncheckedUpdateManyWithoutItemsInput
   final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
       id;
 
-  final _i1.PrismaNullable<
-      _i1.PrismaUnion<String, StringFieldUpdateOperationsInput>> quantity;
+  final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
+      quantity;
 
   final _i1.PrismaNullable<_i1.PrismaUnion<int, IntFieldUpdateOperationsInput>>
       product_id;
@@ -6140,7 +6149,7 @@ class OrderItemGroupByOutputType implements _i1.JsonSerializable {
 
   final int id;
 
-  final String quantity;
+  final int quantity;
 
   final int order_id;
 
@@ -6695,6 +6704,7 @@ class OrderItemCountAggregateOutputType implements _i1.JsonSerializable {
 class OrderItemAvgAggregateOutputType implements _i1.JsonSerializable {
   const OrderItemAvgAggregateOutputType({
     this.id,
+    this.quantity,
     this.order_id,
     this.product_id,
   });
@@ -6703,6 +6713,8 @@ class OrderItemAvgAggregateOutputType implements _i1.JsonSerializable {
       _$OrderItemAvgAggregateOutputTypeFromJson(json);
 
   final _i1.PrismaNullable<double> id;
+
+  final _i1.PrismaNullable<double> quantity;
 
   final _i1.PrismaNullable<double> order_id;
 
@@ -6721,6 +6733,7 @@ class OrderItemAvgAggregateOutputType implements _i1.JsonSerializable {
 class OrderItemSumAggregateOutputType implements _i1.JsonSerializable {
   const OrderItemSumAggregateOutputType({
     this.id,
+    this.quantity,
     this.order_id,
     this.product_id,
   });
@@ -6729,6 +6742,8 @@ class OrderItemSumAggregateOutputType implements _i1.JsonSerializable {
       _$OrderItemSumAggregateOutputTypeFromJson(json);
 
   final _i1.PrismaNullable<int> id;
+
+  final _i1.PrismaNullable<int> quantity;
 
   final _i1.PrismaNullable<int> order_id;
 
@@ -6757,7 +6772,7 @@ class OrderItemMinAggregateOutputType implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<int> id;
 
-  final _i1.PrismaNullable<String> quantity;
+  final _i1.PrismaNullable<int> quantity;
 
   final _i1.PrismaNullable<int> order_id;
 
@@ -6786,7 +6801,7 @@ class OrderItemMaxAggregateOutputType implements _i1.JsonSerializable {
 
   final _i1.PrismaNullable<int> id;
 
-  final _i1.PrismaNullable<String> quantity;
+  final _i1.PrismaNullable<int> quantity;
 
   final _i1.PrismaNullable<int> order_id;
 
@@ -6906,7 +6921,7 @@ class OrderItem implements _i1.JsonSerializable {
 
   final int id;
 
-  final String quantity;
+  final int quantity;
 
   final int order_id;
 
@@ -10065,7 +10080,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
             'isId': false,
             'isReadOnly': false,
             'hasDefaultValue': false,
-            'type': 'String',
+            'type': 'Int',
             'isGenerated': false,
             'isUpdatedAt': false,
             'dbNames': null,
@@ -10084,7 +10099,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'isId': false,
               'isReadOnly': false,
               'hasDefaultValue': false,
-              'type': 'String',
+              'type': 'Int',
               'isGenerated': false,
               'isUpdatedAt': false,
             },
@@ -10264,7 +10279,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'isId': false,
               'isReadOnly': false,
               'hasDefaultValue': false,
-              'type': 'String',
+              'type': 'Int',
               'isGenerated': false,
               'isUpdatedAt': false,
             },
@@ -12455,13 +12470,13 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'StringFilter',
+                  'type': 'IntFilter',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 },
@@ -12918,13 +12933,13 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'StringWithAggregatesFilter',
+                  'type': 'IntWithAggregatesFilter',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 },
@@ -15246,7 +15261,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 }
@@ -15316,7 +15331,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 }
@@ -15371,13 +15386,13 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 },
                 {
                   'isList': false,
-                  'type': 'StringFieldUpdateOperationsInput',
+                  'type': 'IntFieldUpdateOperationsInput',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
@@ -15454,13 +15469,13 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 },
                 {
                   'isList': false,
-                  'type': 'StringFieldUpdateOperationsInput',
+                  'type': 'IntFieldUpdateOperationsInput',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
@@ -15542,7 +15557,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 }
@@ -15597,13 +15612,13 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 },
                 {
                   'isList': false,
-                  'type': 'StringFieldUpdateOperationsInput',
+                  'type': 'IntFieldUpdateOperationsInput',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
@@ -15649,13 +15664,13 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 },
                 {
                   'isList': false,
-                  'type': 'StringFieldUpdateOperationsInput',
+                  'type': 'IntFieldUpdateOperationsInput',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
@@ -19036,6 +19051,21 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'deprecation': null,
             },
             {
+              'name': 'quantity',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
               'name': 'order_id',
               'comment': null,
               'isNullable': false,
@@ -19217,6 +19247,21 @@ final _i3.Document dmmf = _i3.Document.fromJson({
           'fields': [
             {
               'name': 'id',
+              'comment': null,
+              'isNullable': false,
+              'isRequired': false,
+              'inputTypes': [
+                {
+                  'isList': false,
+                  'type': 'SortOrder',
+                  'location': 'enumTypes',
+                  'namespace': 'prisma',
+                }
+              ],
+              'deprecation': null,
+            },
+            {
+              'name': 'quantity',
               'comment': null,
               'isNullable': false,
               'isRequired': false,
@@ -24921,7 +24966,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 }
@@ -24976,7 +25021,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 }
@@ -25340,13 +25385,13 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'StringFilter',
+                  'type': 'IntFilter',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 },
@@ -25584,7 +25629,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 }
@@ -25639,7 +25684,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 }
@@ -27707,7 +27752,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 }
@@ -27747,13 +27792,13 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 },
                 {
                   'isList': false,
-                  'type': 'StringFieldUpdateOperationsInput',
+                  'type': 'IntFieldUpdateOperationsInput',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
@@ -27814,13 +27859,13 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 },
                 {
                   'isList': false,
-                  'type': 'StringFieldUpdateOperationsInput',
+                  'type': 'IntFieldUpdateOperationsInput',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
@@ -27887,13 +27932,13 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 },
                 {
                   'isList': false,
-                  'type': 'StringFieldUpdateOperationsInput',
+                  'type': 'IntFieldUpdateOperationsInput',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
@@ -27954,7 +27999,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 }
@@ -27994,13 +28039,13 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 },
                 {
                   'isList': false,
-                  'type': 'StringFieldUpdateOperationsInput',
+                  'type': 'IntFieldUpdateOperationsInput',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
@@ -28062,13 +28107,13 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 },
                 {
                   'isList': false,
-                  'type': 'StringFieldUpdateOperationsInput',
+                  'type': 'IntFieldUpdateOperationsInput',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
@@ -28135,13 +28180,13 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'inputTypes': [
                 {
                   'isList': false,
-                  'type': 'String',
+                  'type': 'Int',
                   'location': 'scalar',
                   'namespace': null,
                 },
                 {
                   'isList': false,
-                  'type': 'StringFieldUpdateOperationsInput',
+                  'type': 'IntFieldUpdateOperationsInput',
                   'location': 'inputObjectTypes',
                   'namespace': 'prisma',
                 },
@@ -28792,7 +28837,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'isNullable': false,
               'outputType': {
                 'isList': false,
-                'type': 'String',
+                'type': 'Int',
                 'location': 'scalar',
                 'namespace': null,
               },
@@ -32742,7 +32787,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'isNullable': false,
               'outputType': {
                 'isList': false,
-                'type': 'String',
+                'type': 'Int',
                 'location': 'scalar',
                 'namespace': null,
               },
@@ -33878,6 +33923,19 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'documentation': null,
             },
             {
+              'name': 'quantity',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'Float',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
               'name': 'order_id',
               'isNullable': true,
               'outputType': {
@@ -33911,6 +33969,19 @@ final _i3.Document dmmf = _i3.Document.fromJson({
           'fields': [
             {
               'name': 'id',
+              'isNullable': true,
+              'outputType': {
+                'isList': false,
+                'type': 'Int',
+                'location': 'scalar',
+                'namespace': null,
+              },
+              'args': [],
+              'deprecation': null,
+              'documentation': null,
+            },
+            {
+              'name': 'quantity',
               'isNullable': true,
               'outputType': {
                 'isList': false,
@@ -33972,7 +34043,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'isNullable': true,
               'outputType': {
                 'isList': false,
-                'type': 'String',
+                'type': 'Int',
                 'location': 'scalar',
                 'namespace': null,
               },
@@ -34030,7 +34101,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
               'isNullable': true,
               'outputType': {
                 'isList': false,
-                'type': 'String',
+                'type': 'Int',
                 'location': 'scalar',
                 'namespace': null,
               },
@@ -34211,7 +34282,7 @@ final _i3.Document dmmf = _i3.Document.fromJson({
   },
 });
 const String schema =
-    '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = "prisma-client-dart"\n}\n\ndatasource db {\n  provider = "mysql"\n  url      = "mysql://dart:password@localhost:3306/vakinha_burger"\n}\n\nmodel User {\n  id       Int     @id @default(autoincrement())\n  email    String  @unique\n  name     String\n  password String\n  orders   Order[]\n}\n\nmodel Product {\n  id           Int         @id @default(autoincrement())\n  name         String\n  description  String\n  price        Float\n  image        String?\n  orderedItems OrderItem[]\n}\n\nmodel Order {\n  id               Int         @id @default(autoincrement())\n  user_id          Int\n  transaction_id   Int?\n  client_cpf       String?\n  delivery_address String\n  status           String      @default("pending")\n  user             User        @relation(fields: [user_id], references: [id])\n  items            OrderItem[]\n}\n\nmodel OrderItem {\n  id         Int     @id @default(autoincrement())\n  quantity   String\n  order_id   Int\n  product_id Int\n  order      Order   @relation(fields: [order_id], references: [id])\n  product    Product @relation(fields: [product_id], references: [id])\n}\n';
+    '// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = "prisma-client-dart"\n}\n\ndatasource db {\n  provider = "mysql"\n  url      = "mysql://dart:password@localhost:3306/vakinha_burger"\n}\n\nmodel User {\n  id       Int     @id @default(autoincrement())\n  email    String  @unique\n  name     String\n  password String\n  orders   Order[]\n}\n\nmodel Product {\n  id           Int         @id @default(autoincrement())\n  name         String\n  description  String\n  price        Float\n  image        String?\n  orderedItems OrderItem[]\n}\n\nmodel Order {\n  id               Int         @id @default(autoincrement())\n  user_id          Int\n  transaction_id   Int?\n  client_cpf       String?\n  delivery_address String\n  status           String      @default("pending")\n  user             User        @relation(fields: [user_id], references: [id])\n  items            OrderItem[]\n}\n\nmodel OrderItem {\n  id         Int     @id @default(autoincrement())\n  quantity   Int\n  order_id   Int\n  product_id Int\n  order      Order   @relation(fields: [order_id], references: [id])\n  product    Product @relation(fields: [product_id], references: [id])\n}\n';
 const String _executable =
     r'C:\Users\fernn\Documents\GitHub\vakinha_burger\api\vakinha_burger_api\.dart_tool\prisma\query-engine';
 
