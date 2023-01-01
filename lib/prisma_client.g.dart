@@ -198,7 +198,7 @@ OrderGroupByOutputType _$OrderGroupByOutputTypeFromJson(
     OrderGroupByOutputType(
       id: json['id'] as int,
       user_id: json['user_id'] as int,
-      transaction_id: json['transaction_id'] as int?,
+      transaction_id: json['transaction_id'] as String?,
       client_cpf: json['client_cpf'] as String?,
       delivery_address: json['delivery_address'] as String,
       status: json['status'] as String,
@@ -560,7 +560,6 @@ OrderAvgAggregateOutputType _$OrderAvgAggregateOutputTypeFromJson(
     OrderAvgAggregateOutputType(
       id: (json['id'] as num?)?.toDouble(),
       user_id: (json['user_id'] as num?)?.toDouble(),
-      transaction_id: (json['transaction_id'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$OrderAvgAggregateOutputTypeToJson(
@@ -568,7 +567,6 @@ Map<String, dynamic> _$OrderAvgAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'user_id': instance.user_id,
-      'transaction_id': instance.transaction_id,
     };
 
 OrderSumAggregateOutputType _$OrderSumAggregateOutputTypeFromJson(
@@ -576,7 +574,6 @@ OrderSumAggregateOutputType _$OrderSumAggregateOutputTypeFromJson(
     OrderSumAggregateOutputType(
       id: json['id'] as int?,
       user_id: json['user_id'] as int?,
-      transaction_id: json['transaction_id'] as int?,
     );
 
 Map<String, dynamic> _$OrderSumAggregateOutputTypeToJson(
@@ -584,7 +581,6 @@ Map<String, dynamic> _$OrderSumAggregateOutputTypeToJson(
     <String, dynamic>{
       'id': instance.id,
       'user_id': instance.user_id,
-      'transaction_id': instance.transaction_id,
     };
 
 OrderMinAggregateOutputType _$OrderMinAggregateOutputTypeFromJson(
@@ -592,7 +588,7 @@ OrderMinAggregateOutputType _$OrderMinAggregateOutputTypeFromJson(
     OrderMinAggregateOutputType(
       id: json['id'] as int?,
       user_id: json['user_id'] as int?,
-      transaction_id: json['transaction_id'] as int?,
+      transaction_id: json['transaction_id'] as String?,
       client_cpf: json['client_cpf'] as String?,
       delivery_address: json['delivery_address'] as String?,
       status: json['status'] as String?,
@@ -614,7 +610,7 @@ OrderMaxAggregateOutputType _$OrderMaxAggregateOutputTypeFromJson(
     OrderMaxAggregateOutputType(
       id: json['id'] as int?,
       user_id: json['user_id'] as int?,
-      transaction_id: json['transaction_id'] as int?,
+      transaction_id: json['transaction_id'] as String?,
       client_cpf: json['client_cpf'] as String?,
       delivery_address: json['delivery_address'] as String?,
       status: json['status'] as String?,
@@ -756,7 +752,7 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
 Order _$OrderFromJson(Map<String, dynamic> json) => Order(
       id: json['id'] as int,
       user_id: json['user_id'] as int,
-      transaction_id: json['transaction_id'] as int?,
+      transaction_id: json['transaction_id'] as String?,
       client_cpf: json['client_cpf'] as String?,
       delivery_address: json['delivery_address'] as String,
       status: json['status'] as String,

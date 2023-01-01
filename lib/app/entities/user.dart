@@ -1,7 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class User {
+import 'package:orm/orm.dart';
+
+class User implements JsonSerializable{
   final int? id;
   final String name;
   final String email;
@@ -32,6 +34,7 @@ class User {
     );
   }
 
+  @override
   String toJson() => json.encode(toMap());
 
   factory User.fromJson(String source) => User.fromMap(json.decode(source) as Map<String, dynamic>);

@@ -4,34 +4,34 @@ import 'package:vakinha_burger_api/app/entities/order.dart';
 import 'package:vakinha_burger_api/app/entities/order_item.dart';
 import 'package:vakinha_burger_api/app/entities/product.dart';
 import 'package:vakinha_burger_api/app/entities/user.dart';
-import 'package:vakinha_burger_api/src/generated/prisma_client.dart' as orm;
+import 'package:vakinha_burger_api/prisma_client.dart' as orm;
 
 class OrderRepository {
   final orm.PrismaClient prisma = orm.PrismaClient();
 
   Future<Order> save(OrderViewModel order) async {
     orm.Order createdOrder = await prisma.order.create(
-      data: orm.PrismaUnion(
-        zero: orm.OrderCreateInput(
-          delivery_address: order.address,
-          user: orm.UserCreateNestedOneWithoutOrdersInput(
-            connect: orm.UserWhereUniqueInput(id: order.userId),
-          ),
-          client_cpf: orm.PrismaUnion(zero: order.cpf),
-          items: orm.OrderItemCreateNestedManyWithoutOrderInput(
-            create: List.from(
-              order.items.map((OrderItemViewModel item) =>
-                  orm.OrderItemCreateWithoutOrderInput(
-                    quantity: item.quantity,
-                    product: orm.ProductCreateNestedOneWithoutOrderedItemsInput(
-                      connect: orm.ProductWhereUniqueInput(id: item.productId),
-                    ),
-                  )),
-            ),
-          ),
-          status: "Pendente",
-          transaction_id: orm.PrismaUnion(one: orm.PrismaNull()),
+      data: orm.OrderCreateInput(
+        delivery_address: order.address,
+        user: orm.UserCreateNestedOneWithoutOrdersInput(
+          connect: orm.UserWhereUniqueInput(id: order.userId),
         ),
+        client_cpf: orm.PrismaUnion(zero: order.cpf),
+        items: orm.OrderItemCreateNestedManyWithoutOrderInput(
+          createMany: orm.OrderItemCreateManyOrderInputEnvelope(
+            data: order.items
+                .map(
+                  (OrderItemViewModel item) =>
+                      orm.OrderItemCreateManyOrderInput(
+                    quantity: item.quantity,
+                    product_id: item.productId,
+                  ),
+                )
+                .toList(),
+          ),
+        ),
+        status: "Pendente",
+        transaction_id: orm.PrismaUnion(one: orm.PrismaNull()),
       ),
     );
 
@@ -53,7 +53,7 @@ class OrderRepository {
 
     List<orm.OrderItem> items = await prisma.orderItem.findMany(
       where: orm.OrderItemWhereInput(
-        order_id: orm.PrismaUnion(one: createdOrder.id),
+        order_id: orm.IntFilter(equals: createdOrder.id),
       ),
     );
 
@@ -77,5 +77,16 @@ class OrderRepository {
     );
 
     return finalOrder;
+  }
+
+  Future<void> updateTransactionId(int orderId, String transactionId) async {
+    prisma.order.update(
+      data: orm.OrderUpdateInput(
+        transaction_id: orm.NullableStringFieldUpdateOperationsInput(
+          set$: orm.PrismaUnion.zero(transactionId),
+        ),
+      ),
+      where: orm.OrderWhereUniqueInput(id: orderId),
+    );
   }
 }

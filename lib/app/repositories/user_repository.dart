@@ -2,7 +2,7 @@ import 'package:vakinha_burger_api/app/core/exceptions/email_already_registered.
 import 'package:vakinha_burger_api/app/core/exceptions/user_not_found_exception.dart';
 import 'package:vakinha_burger_api/app/core/helper/cripty_helper.dart';
 import 'package:vakinha_burger_api/app/entities/user.dart';
-import 'package:vakinha_burger_api/src/generated/prisma_client.dart' as orm;
+import 'package:vakinha_burger_api/prisma_client.dart' as orm;
 
 class UserRepository {
   final orm.PrismaClient prisma = orm.PrismaClient();
@@ -39,10 +39,8 @@ class UserRepository {
     try {
       final usersWithSameEmail = await prisma.user.findMany(
         where: orm.UserWhereInput(
-          email: orm.PrismaUnion(
-            zero: orm.StringFilter(
-              equals: user.email,
-            ),
+          email: orm.StringFilter(
+            equals: user.email,
           ),
         ),
       );
@@ -52,12 +50,10 @@ class UserRepository {
       }
 
       final orm.User prismaUser = await prisma.user.create(
-        data: orm.PrismaUnion(
-          zero: orm.UserCreateInput(
-            name: user.name,
-            email: user.email,
-            password: CriptyHelper.generateSha256Hash(user.password),
-          ),
+        data: orm.UserCreateInput(
+          name: user.name,
+          email: user.email,
+          password: CriptyHelper.generateSha256Hash(user.password),
         ),
       );
       print(prismaUser.toJson());
@@ -66,6 +62,23 @@ class UserRepository {
       rethrow;
     } finally {
       // await prisma.$disconnect();
+    }
+  }
+
+  Future<User> findById(int id) async {
+    var foundUser = await prisma.user.findUnique(
+      where: orm.UserWhereUniqueInput(id: id),
+    );
+
+    if (foundUser != null) {
+      return User(
+        id: foundUser.id,
+        name: foundUser.name,
+        email: foundUser.email,
+        password: '',
+      );
+    } else {
+      throw Exception("");
     }
   }
 }
