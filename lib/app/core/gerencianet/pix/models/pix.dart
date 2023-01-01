@@ -12,7 +12,7 @@ class Pix {
       final Map<String, Object?> billingData = {
         'calendario': {'expiracao': 3600},
         'devedor': {'cpf': cpf, 'nome': name},
-        'valor': {'original': '$value'},
+        'valor': {'original': value.toStringAsFixed(2)},
         'chave': EnvHelper.env['gerencianetPixKey'],
         'solicitacaoPagador': 'Pedido de número $orderId no Vakinha Burger',
         'infoAdicionais': [

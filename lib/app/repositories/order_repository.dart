@@ -39,12 +39,16 @@ class OrderRepository {
       where: orm.UserWhereUniqueInput(id: createdOrder.user_id),
     );
 
+    if (user == null) {
+      throw Exception();
+    }
+
     Order finalOrder = Order(
       id: createdOrder.id,
       user: User(
-        name: user!.name,
+        name: user.name,
         email: user.email,
-        password: user.password,
+        password: '',
       ),
       deliveryAddress: createdOrder.delivery_address,
       status: createdOrder.status,
